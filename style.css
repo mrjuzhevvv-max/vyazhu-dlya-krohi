@@ -116,29 +116,26 @@ button { font: inherit; }
   cursor: pointer;
 }
 
-/* ---------- Декоративные мотивы ---------- */
+/* ---------- Клубки на фоне ----------
+   Полупрозрачные PNG-клубки (images/background1–5.png) стоят по краям блоков.
+   Размер задаётся --w, масштаб для экранов — --s. */
 
-.ambient { position: absolute; z-index: 0; pointer-events: none; color: #b9878a; opacity: .13; }
-.ambient svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.ambient-flower { width: 86px; height: 86px; }
-.ambient-yarn { width: 96px; height: 96px; }
-.ambient-knit { width: 86px; height: 105px; }
-.ambient-romper { width: 74px; height: 100px; }
+:root { --s: 1; --yarn-opacity: .27; }
+
+.yarn {
+  position: absolute;
+  z-index: 0;
+  width: calc(var(--w, 130px) * var(--s));
+  height: auto;
+  opacity: var(--yarn-opacity);
+  transform: rotate(var(--r, 0deg));
+  pointer-events: none;
+  user-select: none;
+}
 
 .section > .wrap,
 .hero > .wrap,
 .contact > .wrap { position: relative; z-index: 1; }
-
-.hero .ambient-a { top: 28px; left: -24px; transform: rotate(-16deg); }
-.hero .ambient-b { right: 3%; bottom: 30px; transform: rotate(15deg); }
-.works .ambient-a { left: 1%; top: 12%; transform: rotate(10deg); }
-.works .ambient-b { right: 2%; bottom: 10%; transform: rotate(-12deg); }
-.reviews .ambient-a { left: 2%; top: 12%; transform: rotate(-10deg); }
-.reviews .ambient-b { right: 2%; bottom: 10%; transform: rotate(12deg); }
-.price-section .ambient-a { left: 2%; top: 17%; transform: rotate(-9deg); }
-.price-section .ambient-b { right: 2%; bottom: 8%; transform: rotate(12deg); }
-.contact .ambient-a { left: 7%; top: 12%; transform: rotate(14deg); }
-.contact .ambient-b { right: 8%; bottom: 8%; transform: rotate(-14deg); }
 
 /* ---------- Первый экран ---------- */
 
@@ -280,17 +277,6 @@ button { font: inherit; }
 
 .works { background: var(--paper); }
 
-/* Фон background2.jpg с прозрачностью 5% (меняется в --bg2-opacity) */
-.works::before,
-.price-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: url("images/bg-2.jpg") center / cover no-repeat;
-  opacity: var(--bg2-opacity, .1);
-  pointer-events: none;
-}
 
 .underlink { margin-top: 35px; text-align: center; }
 
@@ -304,15 +290,7 @@ button { font: inherit; }
 
 /* ---------- О мастере ---------- */
 
-.story {
-  background-color: #f8eee8;
-  background-image:
-    linear-gradient(rgba(248, 238, 232, .34), rgba(248, 238, 232, .34)),
-    url("images/bg-main.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
+.story { background: #f8eee8; }
 
 .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .story-grid > * { min-width: 0; }
@@ -361,12 +339,6 @@ button { font: inherit; }
 /* ---------- Контакты и подвал ---------- */
 
 .contact { position: relative; padding: 86px 0; overflow: hidden; background: #ead2ce; }
-
-.contact::before,
-.contact::after { content: '✿'; position: absolute; color: #fff5ee33; font-size: 190px; }
-
-.contact::before { left: -42px; top: -75px; }
-.contact::after { right: -50px; bottom: -100px; }
 
 .contact-inner { position: relative; z-index: 1; max-width: 700px; margin: auto; text-align: center; }
 .contact h2 { margin: 10px 0; font: 500 46px var(--serif); }
@@ -479,15 +451,7 @@ button { font: inherit; }
 
 /* Отзывы */
 
-.reviews {
-  background-color: #f8eee8;
-  background-image:
-    linear-gradient(rgba(248, 238, 232, .34), rgba(248, 238, 232, .34)),
-    url("images/bg-main.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
+.reviews { background: #f8eee8; }
 
 .review-card {
   display: grid;
@@ -603,6 +567,7 @@ body:has(.photo-lightbox[open]) { overflow: hidden; }
    ========================================================================== */
 
 @media (max-width: 800px) {
+  :root { --s: .72; }
   .wrap { width: min(100% - 36px, 600px); }
 
   .nav { height: 68px; }
@@ -653,6 +618,8 @@ body:has(.photo-lightbox[open]) { overflow: hidden; }
 }
 
 @media (max-width: 560px) {
+  :root { --s: .5; --yarn-opacity: .24; }
+  .yarn-more { display: none; }
   .topline { font-size: 9px; letter-spacing: .08em; }
 
   .hero h1 { font-size: clamp(34px, 12vw, 48px); }
