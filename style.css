@@ -287,7 +287,7 @@ button { font: inherit; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("images/background2.jpg") center / cover no-repeat;
+  background: url("images/bg-2.jpg") center / cover no-repeat;
   opacity: var(--bg2-opacity, .1);
   pointer-events: none;
 }
@@ -308,7 +308,7 @@ button { font: inherit; }
   background-color: #f8eee8;
   background-image:
     linear-gradient(rgba(248, 238, 232, .34), rgba(248, 238, 232, .34)),
-    url("images/background.png");
+    url("images/bg-main.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -483,7 +483,7 @@ button { font: inherit; }
   background-color: #f8eee8;
   background-image:
     linear-gradient(rgba(248, 238, 232, .34), rgba(248, 238, 232, .34)),
-    url("images/background.png");
+    url("images/bg-main.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
